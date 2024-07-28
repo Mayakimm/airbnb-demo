@@ -1,3 +1,38 @@
-<h1>As a user I can see my dashboard</h1>
-
-<%= @bookings.first %>
+<div class="dashboard-container d-flex w-75 mt-3 " style="margin:0 auto; background-color:white">
+  <div class="profile-container d-flex flex-column align-items-center p-3 m-5 rounded-5" style="width:350px; height:200px; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+    <div class="border rounded-circle d-flex align-items-center justify-content-center" style="width:100px; height:100px">
+      <i class="fa-solid fa-user" style="font-size: 4rem;"></i>
+    </div>
+    <%= current_user.name %>
+    <% if current_user.owner_mode %>
+      <p>Host</p>
+      <i class="fa-solid fa-toggle-on"></i>
+    <% else %>
+      <p>Traveller</p>
+      <i class="fa-solid fa-toggle-on fa-flip-horizontal"></i>
+    <% end %>
+  </div>
+  <div class="my-bookings-container m-5 d-flex flex-column flex-grow-1">
+    <h3 class="mb-3">My bookings</h3>
+    <% @bookings.each do |booking| %>
+      <%= link_to booking_path(booking), class:"text-decoration-none" do %>
+        <div class="my-booking-card">
+          <img src="<%= booking.flat.photos %>" class="" alt="flat_photo">
+          <div class="my-booking-infos d-flex justify-content-between flex-grow-1">
+            <div>
+              <h5 class="text-dark"><%= booking.flat.name %></h5>
+              <p class="text-dark"><%= booking.start_date.strftime('%Y-%m-%d') %> ~ <%= booking.end_date.strftime('%Y-%m-%d') %></p>
+            </div>
+            <p class="booking-status d-flex align-items-center justify-content-center mt-0 text-dark">
+              <% if booking.confirm %>
+                Confirmed
+              <% else %>
+                Pending
+              <% end %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
