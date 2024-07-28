@@ -11,6 +11,23 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-white shadow-sm">
+      <div class="container-fluid mx-3 d-flex align-items-center">
+        <%= link_to root_path, class: 'navbar-brand navbar-dark d-flex align-items-center' do %>
+          <i class="fa-solid fa-house-flag" style="color: #e68619; margin-right: 8px;"></i>
+          <span class="fs-3 fw-bold mb-0 text-dark">RetroBnB</span>
+        <% end %>
+
+        <div class="navbar-right">
+          <% if user_signed_in? %>
+            <%= link_to 'Profile', user_path(current_user), class: 'btn btn-dark rounded-5' %>
+          <% else %>
+            <%= link_to 'Sign In', new_user_session_path, class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>

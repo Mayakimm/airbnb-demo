@@ -1,12 +1,31 @@
-<%# <h1>As a user I can search for a flat</h1> %>
-
-<%# <h1>As a user I can see all flats</h1> %>
-<% @flats.each do |flat| %>
-  <div class="card" style="width: 18rem;">
-    <img src="<%= flat.photos %>" class="card-img-top" alt="flat_photo">
-    <div class="card-body">
-      <h5 class="card-title"><%= flat.name %></h5>
-      <p class="card-text"><%= flat.address %></p>
-    </div>
+<div class="banner">
+  <div class="container">
+    <h1>Discover Your Perfect Vintage Home</strong>!</h1>
+    <p>Experience the charm and elegance of a bygone era with our curated selection of vintage houses.</p>
+    <a class="btn btn-flat" href="#">Search</a>
   </div>
-<% end %>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <% @flats.each do |flat| %>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex">
+        <%= link_to flat_path(flat), class:"text-decoration-none" do %>
+          <div class="card flex-fill">
+            <img src="<%= flat.photos %>" class="card-img-top" alt="flat_photo">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title"><%= flat.name %></h5>
+              <p class="card-text"><%= flat.address %></p>
+              <div class="subtext-box mt-auto d-flex align-items-center justify-content-end">
+                <i class="fa-solid fa-user-group card-subtext-icon" style="margin-bottom:0px; margin-right:8px"></i>
+                <p class="card-subtext" style="margin-bottom:0px; margin-right:8px"><%= flat.limit_guests %></p>
+                <i class="fa-solid fa-euro-sign card-subtext-icon" style="margin-bottom:0px; margin-right:8px"></i>
+                <p class="card-subtext" style="margin-bottom:0px; margin-right:8px"><%= flat.price %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
