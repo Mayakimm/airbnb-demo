@@ -12,27 +12,52 @@
       <i class="fa-solid fa-toggle-on fa-flip-horizontal"></i>
     <% end %>
   </div>
-  <div class="my-bookings-container m-5 d-flex flex-column flex-grow-1">
-    <h3 class="mb-3">My bookings</h3>
-    <% @bookings.each do |booking| %>
-      <%= link_to booking_path(booking), class:"text-decoration-none" do %>
-        <div class="my-booking-card">
-          <img src="<%= booking.flat.photos %>" class="" alt="flat_photo">
-          <div class="my-booking-infos d-flex justify-content-between flex-grow-1">
-            <div>
-              <h5 class="text-dark"><%= booking.flat.name %></h5>
-              <p class="text-dark"><%= booking.start_date.strftime('%Y-%m-%d') %> ~ <%= booking.end_date.strftime('%Y-%m-%d') %></p>
+  <div class="bookings-container d-flex flex-column flex-grow-1">
+    <div class="my-bookings-container m-5 mb-3 d-flex flex-column ">
+      <h3 class="mb-3">Upcoming bookings</h3>
+      <% @upcoming_bookings.each do |booking| %>
+        <%= link_to booking_path(booking), class:"text-decoration-none" do %>
+          <div class="my-booking-card">
+            <img src="<%= booking.flat.photos %>" class="" alt="flat_photo">
+            <div class="my-booking-infos d-flex justify-content-between flex-grow-1">
+              <div>
+                <h5 class="text-dark"><%= booking.flat.name %></h5>
+                <p class="text-dark"><%= booking.start_date.strftime('%Y-%m-%d') %> ~ <%= booking.end_date.strftime('%Y-%m-%d') %></p>
+              </div>
+              <p class="booking-status d-flex align-items-center justify-content-center mt-0 text-dark">
+                <% if booking.confirm %>
+                  Confirmed
+                <% else %>
+                  Pending
+                <% end %>
+              </p>
             </div>
-            <p class="booking-status d-flex align-items-center justify-content-center mt-0 text-dark">
-              <% if booking.confirm %>
-                Confirmed
-              <% else %>
-                Pending
-              <% end %>
-            </p>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+    <div class="my-bookings-container m-5 mt-0 d-flex flex-column">
+      <h3 class="mb-3">Past bookings</h3>
+      <% @past_bookings.each do |booking| %>
+        <%= link_to booking_path(booking), class:"text-decoration-none" do %>
+          <div class="my-booking-card">
+            <img src="<%= booking.flat.photos %>" class="" alt="flat_photo">
+            <div class="my-booking-infos d-flex justify-content-between flex-grow-1">
+              <div>
+                <h5 class="text-dark"><%= booking.flat.name %></h5>
+                <p class="text-dark"><%= booking.start_date.strftime('%Y-%m-%d') %> ~ <%= booking.end_date.strftime('%Y-%m-%d') %></p>
+              </div>
+              <p class="booking-status d-flex align-items-center justify-content-center mt-0 text-dark">
+                <% if booking.confirm %>
+                  Confirmed
+                <% else %>
+                  Pending
+                <% end %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
