@@ -10,6 +10,19 @@ class BookingsController < ApplicationController
     end
   end
 
+  def show
+    @booking = Booking.find(params[:id])
+    @flat= @booking.flat
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    if @booking.destroy
+      redirect_to user_path(current_user), notice: 'Booking has been canceled successfully! :D'
+    else
+      redirect_to booking_path(@booking), alert: 'Failed to cancel your booking.'
+    end
+  end
   private
 
   def booking_params
