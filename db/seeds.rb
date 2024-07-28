@@ -7,3 +7,30 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+# Create Users
+require 'faker'
+user1 = User.create!(
+  email: "john.doe@example.com",
+  password: 'password1', # Note: In a real app, ensure passwords are securely handled
+  name: "John Doe",
+  owner_mode: false
+)
+
+user2 = User.create!(
+  email: "jane.smith@example.com",
+  password: 'password2', # Note: In a real app, ensure passwords are securely handled
+  name: "Jane Smith",
+  owner_mode: false
+)
+
+# Create Flats
+12.times do |i|
+  Flat.create!(
+    name: Faker::Address.community,
+    address: Faker::Address.full_address,
+    limit_guests: rand(1..10),
+    photos: "https://picsum.photos/300/300",
+    price: rand(50..200),
+    user_id: [user1.id, user2.id].sample # Randomly assign to one of the two users
+  )
+end
