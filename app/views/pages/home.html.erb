@@ -1,2 +1,12 @@
-<h1>As a user I can see all flats</h1>
-<h1>As a user I can search for a flat</h1>
+<%# <h1>As a user I can search for a flat</h1> %>
+
+<%# <h1>As a user I can see all flats</h1> %>
+<% @flats.each do |flat| %>
+  <div class="card" style="width: 18rem;">
+    <img src="<%= flat.photos %>" class="card-img-top" alt="flat_photo">
+    <div class="card-body">
+      <h5 class="card-title"><%= flat.name %></h5>
+      <p class="card-text"><%= flat.address %></p>
+    </div>
+  </div>
+<% end %>
