@@ -1,1 +1,44 @@
 // Specific CSS for your home-page
+.notice, .alert {
+  margin: 0; /* Remove margins */
+  padding: 0.5rem; /* Optional: add some padding if needed */
+  display: none; /* Hide by default */
+}
+
+.notice:empty, .alert:empty {
+  display: none; /* Ensure empty notices and alerts are hidden */
+}
+
+.notice:not(:empty), .alert:not(:empty) {
+  display: block; /* Show notices and alerts only when they have content */
+}
+
+.banner {
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://neural.love/cdn/thumbnails/1eda8151-4bd8-6c9a-a6a8-b57389c2a139/982a3f2d-770b-5384-8d63-3485cc0e614a.webp?Expires=1725148799&Signature=gEZWWxHXMkelNvM4uHOx8ZeLiGJvFZsPxO3wNaskRDxOAD7leJMeriUbQN49ziqyetvx5U8R2iHNEQ5oJ36Pj1UqfLVqBPW-qZVxJxOJbZySXa7aB7No8HRiI3fzBXqEiHKfDu7WwjHYUjPB0TigtXlsxRlcwWGbK~K81QaTWtwbQMVdoG86m4IUOOxMlZoA6JOlEeQrNolkS5OXtCf6lxIDuhq3qkB8IaDmM1dxr3XFjVazR5Cz6gshFQgU3aWxHqoP4kpY6x20rWPw9o9sFIzMollT60lQddWOYdB-IOumIo~6Y8qKFasbnZ0~4ntOXF0DkT1pVrffQfVV8F6xnQ__&Key-Pair-Id=K2RFTOXRBNSROX);
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+}
+
+.banner h1 {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.banner p {
+  font-size: 20px;
+  color: white;
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.btn-flat {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #c14507;
+  // transition: background 0.3s ease;
+}
