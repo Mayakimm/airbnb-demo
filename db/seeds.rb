@@ -31,6 +31,7 @@ user2 = User.create!(
     limit_guests: rand(1..10),
     photos: Faker::LoremFlickr.image(size: "300x300", search_terms: ['house', 'apartment']),
     price: rand(50..200),
-    user_id: [user1.id, user2.id].sample # Randomly assign to one of the two users
+    user_id: [user1.id, user2.id].sample, # Randomly assign to one of the two users
+    description: Faker::Lorem.paragraph(sentence_count: 5)
   )
 end

@@ -1,2 +1,44 @@
-<h1>As a user I can see one flat</h1>
-<h2>As a user I can see reviews of the flat</h2>
+<%# <h1>As a user I can see one flat</h1> %>
+<div class="show-container p-4 m-4">
+  <h1><%= @flat.name %></h1>
+  <div class="d-flex justify-content-between rounded p-4" style="height:500px; background-color:white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+    <div class="flat-img-container flex-grow-1" style="height:100%">
+      <img src="<%= @flat.photos %>" class="w-100 h-100" style="object-fit: cover;" alt="flat_photo">
+    </div>
+    <div class="flat-info-container d-flex flex-column px-4">
+      <%= @flat.description %>
+      <div class="d-flex align-items-center justify-content-start">
+        <i class="fa-solid fa-user-group card-subtext-icon" style="margin-bottom:0px; margin-right:8px"></i>
+        <p class="card-subtext" style="margin-bottom:0px; margin-right:8px"><%= @flat.limit_guests %></p>
+        <i class="fa-solid fa-euro-sign card-subtext-icon" style="margin-bottom:0px; margin-right:8px"></i>
+        <p class="card-subtext" style="margin-bottom:0px; margin-right:8px"><%= @flat.price %></p>
+      </div>
+      <div class="book-flat-form mt-auto p-4 rounded" style="box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+        <%= simple_form_for @booking, url: bookings_path do |f| %>
+          <%= f.hidden_field :flat_id, value: @flat.id %>
+          <div class="form-group">
+            <%= f.input :start_date, as: :date, label: "Start Date", input_html: { class: "form-control" } %>
+          </div>
+          <div class="form-group">
+            <%= f.input :end_date, as: :date, label: "End Date", input_html: { class: "form-control" } %>
+          </div>
+          <div class="form-group">
+            <%= f.button :submit, "Submit", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<%# <h2>As a user I can see reviews of the flat</h2> %>
+<div class="reviews-container p-5">
+  <h1>Reviews</h1>
+  <div class="review-container p-3 mb-3" style="background-color:white">
+    <p>user_1 ⭐️⭐️⭐️⭐️</p>
+    <p>This flat is amazing. I spent this summer vacation with my kids here. Wonderful experience I highly recommend for a family trip!</p>
+  </div>
+  <div class="review-container p-3" style="background-color:white">
+    <p>user_1 ⭐️⭐️⭐️⭐️</p>
+    <p>This flat is amazing. I spent this summer vacation with my kids here. Wonderful experience I highly recommend for a family trip!</p>
+  </div>
+</div>
