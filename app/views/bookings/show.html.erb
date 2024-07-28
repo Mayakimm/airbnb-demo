@@ -10,10 +10,18 @@
       <h6>Date</h6>
       <p class="text-dark"><%= @booking.start_date.strftime('%Y-%m-%d') %> ~ <%= @booking.end_date.strftime('%Y-%m-%d') %></p>
     </div>
-    <div class="booking-cancel">
-      <%= button_to  booking_path(@booking), method: :delete, data: { confirm: 'Are you sure you want to remove this exercise?' }, class:"btn btn-danger border rounded-5"  do %>
-        <p class="mb-0 text-white">cancel <i class="fa-solid fa-x" style="color: #ffffff;"></i></p>
-      <% end %>
-    </div>
+    <% if @booking.start_date.to_date > Date.today %>
+      <div class="booking-cancel">
+        <%= button_to  booking_path(@booking), method: :delete, data: { confirm: 'Are you sure you want to remove this exercise?' }, class:"btn btn-danger border rounded-5"  do %>
+          <p class="mb-0 text-white">cancel <i class="fa-solid fa-x" style="color: #ffffff;"></i></p>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="booking-review">
+        <%= link_to new_booking_review_path(@booking), class:"btn btn-dark border rounded-5" do %>
+          <p class="mb-0">Leave a review</p>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

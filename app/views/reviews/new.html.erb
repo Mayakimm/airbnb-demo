@@ -1,1 +1,14 @@
-<h1>As a user I can leave a review</h1>
+<div class="book-flat-form mt-auto p-4 rounded" style="width:70%; margin:0 auto; background-color:white; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+  <%= simple_form_for [@booking, @review], url: booking_reviews_path do |f| %>
+    <%= f.hidden_field :booking_id, value: @booking %>
+    <div class="form-group">
+      <%= f.input :comment, as: :text, label: "Comment", placeholder: "Such a lovely meal!", input_html: { class: "form-control" } %>
+    </div>
+    <div class="form-group">
+      <%= f.input :rating, label: "Rating", collection: 1..5, include_blank: false %>
+    </div>
+    <div class="form-group">
+      <%= f.button :submit, "Submit Review", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

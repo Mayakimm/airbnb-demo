@@ -2,6 +2,6 @@ class FlatsController < ApplicationController
   def show
     @flat = Flat.find(params[:id])
     @booking = Booking.new
-    @reviews = Review.where(flat_id: @flat.id)
+    @reviews = Review.joins(booking: :flat).where(bookings: { flat_id: params[:id] })
   end
 end
